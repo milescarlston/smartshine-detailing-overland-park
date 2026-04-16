@@ -1,0 +1,130 @@
+import type { Metadata } from "next";
+import {
+  BUSINESS,
+  SERVICE_AREAS,
+  OG_IMAGES,
+  OG_IMAGE_URL,
+} from "@/lib/constants";
+import { ContactForm } from "@/components/ContactForm";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { JsonLd } from "@/components/JsonLd";
+import { breadcrumbSchema } from "@/lib/schema";
+import { Phone, Mail, MapPin, Clock } from "@/components/Icons";
+
+const TITLE = `Book Mobile Car Detailing Overland Park | ${BUSINESS.shortName} Free Quote`;
+const DESCRIPTION = `Ready to get your car detailed? Book ${BUSINESS.shortName} mobile detailing in Overland Park — free quotes, flexible scheduling, and we come to you. Call or book online.`;
+
+export const metadata: Metadata = {
+  title: TITLE,
+  description: DESCRIPTION,
+  alternates: { canonical: "/contact" },
+  openGraph: {
+    title: TITLE,
+    description: DESCRIPTION,
+    url: "/contact",
+    type: "website",
+    images: OG_IMAGES,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: TITLE,
+    description: DESCRIPTION,
+    images: [OG_IMAGE_URL],
+  },
+};
+
+export default function ContactPage() {
+  return (
+    <>
+      <JsonLd
+        data={breadcrumbSchema([
+          { label: "Home", url: "/" },
+          { label: "Contact", url: "/contact" },
+        ])}
+      />
+
+      <section style={{ padding: "2.5rem 0 1rem" }}>
+        <div className="container-site">
+          <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Contact" }]} />
+          <h1
+            style={{
+              fontSize: "clamp(2rem, 4.5vw, 2.75rem)",
+              fontWeight: 800,
+              letterSpacing: "-0.02em",
+              marginTop: "1rem",
+              marginBottom: "0.75rem",
+            }}
+          >
+            Get a free detailing quote
+          </h1>
+          <p
+            style={{
+              margin: 0,
+              color: "var(--muted)",
+              maxWidth: 720,
+              lineHeight: 1.65,
+              fontSize: "1.0625rem",
+            }}
+          >
+            Tell us about your vehicle and pick a service. We&rsquo;ll confirm your quote
+            within one business day and schedule a time that works for you.
+          </p>
+        </div>
+      </section>
+
+      <section style={{ padding: "1.5rem 0 4rem" }}>
+        <div
+          className="container-site"
+          style={{ display: "grid", gap: "2rem", gridTemplateColumns: "minmax(0, 2fr) minmax(0, 1fr)" }}
+        >
+          <ContactForm />
+
+          <aside style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
+            <div className="card">
+              <h2 style={{ marginTop: 0, fontSize: "1.1rem", color: "var(--ink)" }}>Prefer to call?</h2>
+              <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "0.625rem" }}>
+                <li style={{ display: "flex", gap: "0.5rem", alignItems: "flex-start" }}>
+                  <Phone width={18} height={18} style={{ color: "var(--brand-darker)", marginTop: 2, flex: "none" }} />
+                  <a href={BUSINESS.phoneHref} style={{ fontWeight: 700, color: "var(--ink)" }}>
+                    {BUSINESS.phone}
+                  </a>
+                </li>
+                <li style={{ display: "flex", gap: "0.5rem", alignItems: "flex-start" }}>
+                  <Mail width={18} height={18} style={{ color: "var(--brand-darker)", marginTop: 2, flex: "none" }} />
+                  <a href={`mailto:${BUSINESS.email}`} style={{ color: "var(--foreground)" }}>
+                    {BUSINESS.email}
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <div className="card">
+              <h2 style={{ marginTop: 0, fontSize: "1.1rem", color: "var(--ink)" }}>
+                Hours
+              </h2>
+              <div style={{ display: "flex", alignItems: "flex-start", gap: "0.5rem", color: "var(--foreground)" }}>
+                <Clock width={18} height={18} style={{ color: "var(--brand-darker)", marginTop: 2, flex: "none" }} />
+                <span>{BUSINESS.hours}</span>
+              </div>
+            </div>
+
+            <div className="card">
+              <h2 style={{ marginTop: 0, fontSize: "1.1rem", color: "var(--ink)" }}>
+                Service areas
+              </h2>
+              <div style={{ display: "flex", alignItems: "flex-start", gap: "0.5rem", color: "var(--foreground)", lineHeight: 1.6 }}>
+                <MapPin width={18} height={18} style={{ color: "var(--brand-darker)", marginTop: 2, flex: "none" }} />
+                <span>{SERVICE_AREAS.join(", ")}, plus most of the surrounding KC metro.</span>
+              </div>
+            </div>
+          </aside>
+        </div>
+        <style>{`
+          @media (max-width: 840px) {
+            .container-site > div[style*="minmax(0, 2fr)"] { grid-template-columns: 1fr !important; }
+          }
+        `}</style>
+      </section>
+    </>
+  );
+}
