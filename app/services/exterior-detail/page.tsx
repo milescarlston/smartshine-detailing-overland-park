@@ -55,7 +55,13 @@ export default function Page() {
           ]}
         />
       </div>
-      <ServiceDetail service={service} />
+      <ServiceDetail
+        service={service}
+        heroImage={{
+          src: "/images/mercedes-exterior-front.png",
+          alt: "Freshly detailed Mercedes exterior — SmartShine mobile exterior detail in Overland Park",
+        }}
+      />
       <FaqSection faqs={EXTERIOR_FAQS} />
       <CTASection title="Ready for a fresh-looking exterior?" />
     </>

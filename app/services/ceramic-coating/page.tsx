@@ -55,7 +55,13 @@ export default function Page() {
           ]}
         />
       </div>
-      <ServiceDetail service={service} />
+      <ServiceDetail
+        service={service}
+        heroImage={{
+          src: "/images/wheel-detail-closeup.png",
+          alt: "Glossy wheel and tire after ceramic coating prep — SmartShine in Overland Park",
+        }}
+      />
       <FaqSection faqs={CERAMIC_COATING_FAQS} />
       <CTASection title="Protect your paint for years" />
     </>

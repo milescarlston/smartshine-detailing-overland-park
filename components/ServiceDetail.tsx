@@ -1,8 +1,15 @@
+import Image from "next/image";
 import Link from "next/link";
 import { BUSINESS, type Service, SERVICES } from "@/lib/constants";
 import { ServiceIcon, Check, Clock, Phone, ArrowRight } from "./Icons";
 
-export function ServiceDetail({ service }: { service: Service }) {
+export function ServiceDetail({
+  service,
+  heroImage,
+}: {
+  service: Service;
+  heroImage?: { src: string; alt: string };
+}) {
   const related = SERVICES.filter((s) => s.slug !== service.slug).slice(0, 3);
 
   return (
@@ -93,6 +100,30 @@ export function ServiceDetail({ service }: { service: Service }) {
               <Clock width={16} height={16} /> {service.estimatedTime}
             </span>
           </div>
+
+          {heroImage && (
+            <div
+              style={{
+                marginTop: "2rem",
+                position: "relative",
+                borderRadius: 14,
+                overflow: "hidden",
+                aspectRatio: "16 / 9",
+                maxWidth: 720,
+                border: "1px solid var(--border)",
+                boxShadow: "0 4px 24px rgba(0,0,0,0.08)",
+              }}
+            >
+              <Image
+                src={heroImage.src}
+                alt={heroImage.alt}
+                fill
+                sizes="(max-width: 768px) 100vw, 720px"
+                style={{ objectFit: "cover" }}
+                priority
+              />
+            </div>
+          )}
         </div>
       </section>
 

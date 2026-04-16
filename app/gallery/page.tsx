@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { BUSINESS, OG_IMAGES, OG_IMAGE_URL, TESTIMONIALS } from "@/lib/constants";
 import { CTASection } from "@/components/CTASection";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
@@ -28,31 +29,56 @@ export const metadata: Metadata = {
   },
 };
 
-// TODO: Replace these placeholder gallery tiles with real before/after photos
-// from completed jobs. Keep captions focused on vehicle + service.
-const ITEMS: { label: string; vehicle: string; service: string; hueA: number; hueB: number }[] = [
-  { label: "Before / After", vehicle: "2021 Honda CR-V", service: "Full Detail", hueA: 200, hueB: 220 },
-  { label: "Paint Correction", vehicle: "2019 BMW 3 Series", service: "Ceramic Coating", hueA: 210, hueB: 190 },
-  { label: "Interior Deep Clean", vehicle: "2018 Ford F-150", service: "Interior Detail", hueA: 30, hueB: 200 },
-  { label: "Headlight Restoration", vehicle: "2014 Toyota Camry", service: "Headlights", hueA: 45, hueB: 210 },
-  { label: "Exterior Refresh", vehicle: "2022 Tesla Model Y", service: "Exterior Detail", hueA: 195, hueB: 230 },
-  { label: "Engine Bay", vehicle: "2020 Jeep Grand Cherokee", service: "Full Detail", hueA: 190, hueB: 40 },
-  { label: "Paint Decontamination", vehicle: "2017 Audi Q5", service: "Ceramic Coating", hueA: 210, hueB: 180 },
-  { label: "Carpet &amp; Seats", vehicle: "2019 Chevy Tahoe", service: "Interior Detail", hueA: 30, hueB: 200 },
+const BEFORE_AFTER: {
+  label: string;
+  vehicle: string;
+  service: string;
+  before: string;
+  after: string;
+}[] = [
+  {
+    label: "Interior Detail",
+    vehicle: "Sedan",
+    service: "Interior Detail",
+    before: "/images/sedan-interior-before.png",
+    after: "/images/sedan-interior-after.png",
+  },
+  {
+    label: "Interior Detail",
+    vehicle: "Truck",
+    service: "Interior Detail",
+    before: "/images/truck-interior-before.png",
+    after: "/images/truck-interior-after.png",
+  },
+  {
+    label: "Interior Detail",
+    vehicle: "SUV / Truck",
+    service: "Interior Detail",
+    before: "/images/suv-interior-before.png",
+    after: "/images/suv-interior-after.png",
+  },
 ];
 
-function tileStyle(hueA: number, hueB: number): React.CSSProperties {
-  return {
-    aspectRatio: "4 / 3",
-    borderRadius: 12,
-    position: "relative",
-    overflow: "hidden",
-    color: "#fff",
-    background: `linear-gradient(135deg, hsl(${hueA} 70% 40%), hsl(${hueB} 80% 28%))`,
-    boxShadow: "0 1px 2px rgba(11,18,32,0.06)",
-    border: "1px solid var(--border)",
-  };
-}
+const SINGLES: { label: string; vehicle: string; service: string; src: string }[] = [
+  {
+    label: "Exterior Detail",
+    vehicle: "Mercedes C-Class",
+    service: "Exterior Detail",
+    src: "/images/mercedes-exterior-front.png",
+  },
+  {
+    label: "Exterior Detail",
+    vehicle: "Mercedes C-Class",
+    service: "Exterior Detail",
+    src: "/images/mercedes-exterior-rear.png",
+  },
+  {
+    label: "Wheel & Tire Detail",
+    vehicle: "Mercedes C-Class",
+    service: "Full Detail",
+    src: "/images/wheel-detail-closeup.png",
+  },
+];
 
 export default function GalleryPage() {
   return (
@@ -84,34 +110,137 @@ export default function GalleryPage() {
             seam, the last tire spoke.
           </p>
           <p style={{ marginTop: "0.75rem", fontSize: "0.85rem", color: "var(--muted)", fontStyle: "italic" }}>
-            Gallery tiles below are placeholders — we&rsquo;ll replace them with real
-            before-and-after photos from recent jobs.
+            Swipe through before-and-after results and finished details below.
           </p>
         </div>
       </section>
 
+      {/* Before / After pairs */}
+      <section style={{ padding: "1rem 0 2rem" }}>
+        <div className="container-site">
+          <h2
+            style={{
+              fontSize: "1.375rem",
+              fontWeight: 800,
+              marginTop: 0,
+              marginBottom: "1.25rem",
+              color: "var(--ink)",
+            }}
+          >
+            Before &amp; after
+          </h2>
+          <div style={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
+            {BEFORE_AFTER.map((pair, i) => (
+              <figure key={i} style={{ margin: 0 }}>
+                <div
+                  className="gallery-pair"
+                  style={{
+                    display: "grid",
+                    gap: "0.75rem",
+                    gridTemplateColumns: "1fr 1fr",
+                  }}
+                >
+                  {[
+                    { src: pair.before, tag: "Before" },
+                    { src: pair.after, tag: "After" },
+                  ].map((img) => (
+                    <div
+                      key={img.tag}
+                      style={{
+                        position: "relative",
+                        aspectRatio: "4 / 3",
+                        borderRadius: 12,
+                        overflow: "hidden",
+                        border: "1px solid var(--border)",
+                      }}
+                    >
+                      <Image
+                        src={img.src}
+                        alt={`${pair.vehicle} interior — ${img.tag.toLowerCase()}`}
+                        fill
+                        sizes="(max-width: 768px) 50vw, 33vw"
+                        style={{ objectFit: "cover" }}
+                      />
+                      <span
+                        style={{
+                          position: "absolute",
+                          top: 10,
+                          left: 10,
+                          fontSize: "0.7rem",
+                          letterSpacing: "0.06em",
+                          textTransform: "uppercase",
+                          fontWeight: 700,
+                          background:
+                            img.tag === "Before"
+                              ? "rgba(0,0,0,0.55)"
+                              : "rgba(14,165,233,0.85)",
+                          color: "#fff",
+                          padding: "0.25rem 0.5rem",
+                          borderRadius: 999,
+                          backdropFilter: "blur(4px)",
+                        }}
+                      >
+                        {img.tag}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+                <figcaption
+                  style={{
+                    marginTop: "0.5rem",
+                    fontSize: "0.875rem",
+                    color: "var(--muted)",
+                  }}
+                >
+                  {pair.service} — {pair.vehicle}
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Individual shots */}
       <section style={{ padding: "1rem 0 3.5rem" }}>
         <div className="container-site">
+          <h2
+            style={{
+              fontSize: "1.375rem",
+              fontWeight: 800,
+              marginTop: 0,
+              marginBottom: "1.25rem",
+              color: "var(--ink)",
+            }}
+          >
+            Finished results
+          </h2>
           <div
             style={{
               display: "grid",
               gap: "1rem",
-              gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))",
+              gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
             }}
           >
-            {ITEMS.map((item, i) => (
+            {SINGLES.map((item, i) => (
               <figure
                 key={i}
                 style={{ margin: 0, display: "flex", flexDirection: "column", gap: "0.5rem" }}
               >
-                <div style={tileStyle(item.hueA, item.hueB)}>
-                  <div
-                    style={{
-                      position: "absolute",
-                      inset: 0,
-                      background:
-                        "radial-gradient(circle at 30% 20%, rgba(255,255,255,0.25), transparent 50%), radial-gradient(circle at 70% 80%, rgba(0,0,0,0.25), transparent 55%)",
-                    }}
+                <div
+                  style={{
+                    position: "relative",
+                    aspectRatio: "4 / 3",
+                    borderRadius: 12,
+                    overflow: "hidden",
+                    border: "1px solid var(--border)",
+                  }}
+                >
+                  <Image
+                    src={item.src}
+                    alt={`${item.vehicle} — ${item.label}`}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    style={{ objectFit: "cover" }}
                   />
                   <span
                     style={{
@@ -122,7 +251,8 @@ export default function GalleryPage() {
                       letterSpacing: "0.06em",
                       textTransform: "uppercase",
                       fontWeight: 700,
-                      background: "rgba(0,0,0,0.32)",
+                      background: "rgba(0,0,0,0.45)",
+                      color: "#fff",
                       padding: "0.25rem 0.5rem",
                       borderRadius: 999,
                       backdropFilter: "blur(4px)",
@@ -138,6 +268,7 @@ export default function GalleryPage() {
                       right: 10,
                       fontWeight: 700,
                       fontSize: "0.95rem",
+                      color: "#fff",
                       textShadow: "0 1px 3px rgba(0,0,0,0.45)",
                     }}
                   >

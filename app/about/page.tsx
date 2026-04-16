@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import {
   BUSINESS,
@@ -105,26 +106,53 @@ export default function AboutPage() {
         >
           <div className="card" style={{ padding: "1.75rem" }}>
             <h2 style={{ marginTop: 0, fontSize: "1.5rem", color: "var(--ink)" }}>Our story</h2>
-            <div className="prose-body">
-              <p>
-                We started {BUSINESS.shortName} because we were tired of the detailing
-                experience most people get: drop the car off for a full day, wait around a
-                waiting room, drive home, realize they missed a few spots. We thought there
-                had to be a better way.
-              </p>
-              <p>
-                So we built a mobile-first detailing business. We come to you, work right in
-                your driveway or parking lot, and you get your car back the same day —
-                usually without ever having to leave the house. Everything else we do flows
-                from that idea: quality equipment, transparent pricing, and detailers who
-                actually care about the result.
-              </p>
-              <p>
-                Today we serve {BUSINESS.address.city} and most of the KC metro, with hundreds
-                of returning customers who book us every few months for maintenance details
-                and refer us to their friends, family, and coworkers.
-              </p>
+            <div
+              className="about-story"
+              style={{ display: "grid", gap: "1.5rem", gridTemplateColumns: "1fr" }}
+            >
+              <div className="prose-body">
+                <p>
+                  We started {BUSINESS.shortName} because we were tired of the detailing
+                  experience most people get: drop the car off for a full day, wait around a
+                  waiting room, drive home, realize they missed a few spots. We thought there
+                  had to be a better way.
+                </p>
+                <p>
+                  So we built a mobile-first detailing business. We come to you, work right in
+                  your driveway or parking lot, and you get your car back the same day —
+                  usually without ever having to leave the house. Everything else we do flows
+                  from that idea: quality equipment, transparent pricing, and detailers who
+                  actually care about the result.
+                </p>
+                <p>
+                  Today we serve {BUSINESS.address.city} and most of the KC metro, with hundreds
+                  of returning customers who book us every few months for maintenance details
+                  and refer us to their friends, family, and coworkers.
+                </p>
+              </div>
+              <div
+                style={{
+                  position: "relative",
+                  borderRadius: 12,
+                  overflow: "hidden",
+                  aspectRatio: "16 / 9",
+                  border: "1px solid var(--border)",
+                }}
+              >
+                <Image
+                  src="/images/mercedes-exterior-rear.png"
+                  alt="SmartShine detailing a Mercedes sedan on-site in Overland Park"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 600px"
+                  style={{ objectFit: "cover" }}
+                />
+              </div>
             </div>
+            <style>{`
+              @media (min-width: 768px) {
+                .about-story { grid-template-columns: 1fr 1fr !important; }
+              }
+            `}</style>
           </div>
 
           <div>

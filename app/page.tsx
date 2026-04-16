@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import {
   BUSINESS,
@@ -63,6 +64,7 @@ export default function HomePage() {
       {/* Hero */}
       <section className="hero-gradient" style={{ paddingTop: "5rem", paddingBottom: "5rem" }}>
         <div className="container-site hero-text">
+          <div className="hero-layout" style={{ display: "grid", gap: "2.5rem", alignItems: "center" }}>
           <div style={{ maxWidth: 760 }}>
             <span
               className="badge"
@@ -139,6 +141,26 @@ export default function HomePage() {
                 <Clock width={18} height={18} /> Mon-Sat 7am-7pm
               </span>
             </div>
+          </div>
+          <div
+            style={{
+              position: "relative",
+              borderRadius: 16,
+              overflow: "hidden",
+              boxShadow: "0 20px 60px rgba(0,0,0,0.4)",
+              aspectRatio: "3 / 4",
+              maxHeight: 520,
+            }}
+          >
+            <Image
+              src="/images/mercedes-exterior-front.png"
+              alt="Freshly detailed Mercedes sedan in a driveway — SmartShine Mobile Detailing"
+              fill
+              sizes="(max-width: 768px) 100vw, 50vw"
+              style={{ objectFit: "cover" }}
+              priority
+            />
+          </div>
           </div>
         </div>
       </section>

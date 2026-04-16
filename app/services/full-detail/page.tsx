@@ -55,7 +55,13 @@ export default function Page() {
           ]}
         />
       </div>
-      <ServiceDetail service={service} />
+      <ServiceDetail
+        service={service}
+        heroImage={{
+          src: "/images/mercedes-exterior-rear.png",
+          alt: "Mercedes detailed inside and out — SmartShine full detail in Overland Park",
+        }}
+      />
       <FaqSection faqs={FULL_DETAIL_FAQS} />
       <CTASection title="Transform your car inside and out" />
     </>

@@ -55,7 +55,13 @@ export default function Page() {
           ]}
         />
       </div>
-      <ServiceDetail service={service} />
+      <ServiceDetail
+        service={service}
+        heroImage={{
+          src: "/images/sedan-interior-after.png",
+          alt: "Clean sedan interior after SmartShine interior detail in Overland Park",
+        }}
+      />
       <FaqSection faqs={INTERIOR_FAQS} />
       <CTASection title="Ready for a deep interior clean?" />
     </>
