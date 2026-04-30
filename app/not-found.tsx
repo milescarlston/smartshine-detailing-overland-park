@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { BUSINESS, SERVICES } from "@/lib/constants";
+import { BOOKING_CTA_LABEL, BOOKING_URL, BUSINESS, SERVICES } from "@/lib/constants";
 
 const TITLE = `Page Not Found | ${BUSINESS.name}`;
 const DESCRIPTION = `This page doesn't exist, but we do! ${BUSINESS.shortName} offers professional mobile car detailing in Overland Park, KS. Head back to our homepage or browse our services.`;
@@ -47,9 +47,14 @@ export default function NotFound() {
           <Link href="/" className="btn btn-primary focus-ring">
             Go to homepage
           </Link>
-          <Link href="/contact" className="btn btn-outline focus-ring">
-            Get a Free Quote
-          </Link>
+          <a
+            href={BOOKING_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-outline focus-ring"
+          >
+            {BOOKING_CTA_LABEL}
+          </a>
         </div>
 
         <div

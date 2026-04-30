@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import {
+  BOOKING_URL,
   BUSINESS,
   BLOG_POSTS,
   OG_IMAGES,
@@ -231,10 +231,15 @@ export default function Page() {
             <p>
               We&rsquo;ll give you an honest recommendation for your vehicle and driving
               situation — even if that means we talk you out of ceramic coating.{" "}
-              <Link href="/contact" style={{ color: "var(--brand-darker)", fontWeight: 600 }}>
-                Reach out
-              </Link>{" "}
-              and we&rsquo;ll help.
+              <a
+                href={BOOKING_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: "var(--brand-darker)", fontWeight: 600 }}
+              >
+                Book a slot online
+              </a>{" "}
+              or give us a call and we&rsquo;ll help.
             </p>
           </div>
         </div>

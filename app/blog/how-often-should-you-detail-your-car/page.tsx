@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import {
+  BOOKING_URL,
   BUSINESS,
   BLOG_POSTS,
   OG_IMAGES,
@@ -191,11 +191,16 @@ export default function Page() {
 
             <h2>Still not sure what&rsquo;s right for your car?</h2>
             <p>
-              <Link href="/contact" style={{ color: "var(--brand-darker)", fontWeight: 600 }}>
-                Send us a quick message
-              </Link>{" "}
-              with your vehicle year/make, where it&rsquo;s parked, and how you use it. We&rsquo;ll
-              reply with an honest recommendation — no pressure.
+              <a
+                href={BOOKING_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: "var(--brand-darker)", fontWeight: 600 }}
+              >
+                Grab a slot on our calendar
+              </a>{" "}
+              or give us a call. Tell us your vehicle year/make, where it&rsquo;s parked, and how
+              you use it, and we&rsquo;ll give you an honest recommendation — no pressure.
             </p>
           </div>
         </div>

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { BUSINESS, NAV_LINKS } from "@/lib/constants";
+import { BOOKING_CTA_LABEL, BOOKING_URL, BUSINESS, NAV_LINKS } from "@/lib/constants";
 import { Monogram } from "./Monogram";
 import { Menu, X, Phone } from "./Icons";
 
@@ -94,9 +94,14 @@ export function Header() {
             <Phone width={18} height={18} />
             <span>{BUSINESS.phone}</span>
           </a>
-          <Link href="/contact" className="btn btn-primary focus-ring">
-            Get a Free Quote
-          </Link>
+          <a
+            href={BOOKING_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-primary focus-ring"
+          >
+            {BOOKING_CTA_LABEL}
+          </a>
         </div>
 
         <button
@@ -157,13 +162,15 @@ export function Header() {
                 <Phone width={18} height={18} />
                 {BUSINESS.phone}
               </a>
-              <Link
-                href="/contact"
+              <a
+                href={BOOKING_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="btn btn-primary focus-ring"
                 onClick={() => setOpen(false)}
               >
-                Get a Free Quote
-              </Link>
+                {BOOKING_CTA_LABEL}
+              </a>
             </div>
           </div>
         </div>

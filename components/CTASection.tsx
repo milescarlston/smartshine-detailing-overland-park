@@ -1,5 +1,4 @@
-import Link from "next/link";
-import { BUSINESS } from "@/lib/constants";
+import { BOOKING_CTA_LABEL, BOOKING_URL, BUSINESS } from "@/lib/constants";
 import { Phone } from "./Icons";
 
 export function CTASection({
@@ -47,13 +46,15 @@ export function CTASection({
             marginTop: "0.5rem",
           }}
         >
-          <Link
-            href="/contact"
+          <a
+            href={BOOKING_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="btn btn-accent focus-ring"
             style={{ fontSize: "1rem" }}
           >
-            Get a Free Quote
-          </Link>
+            {BOOKING_CTA_LABEL}
+          </a>
           <a
             href={BUSINESS.phoneHref}
             className="btn focus-ring"

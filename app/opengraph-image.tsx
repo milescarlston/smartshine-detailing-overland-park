@@ -1,5 +1,5 @@
 import { ImageResponse } from "next/og";
-import { BRAND, BUSINESS } from "@/lib/constants";
+import { BOOKING_CTA_LABEL, BRAND, BUSINESS } from "@/lib/constants";
 
 export const alt = `${BUSINESS.name} in ${BUSINESS.address.city}, ${BUSINESS.address.state}`;
 export const size = { width: 1200, height: 630 };
@@ -100,7 +100,7 @@ export default function Image() {
               fontSize: 24,
             }}
           >
-            Get a Free Quote
+            {BOOKING_CTA_LABEL}
           </div>
           <div style={{ display: "flex", fontSize: 22, opacity: 0.75 }}>
             {siteDomain}

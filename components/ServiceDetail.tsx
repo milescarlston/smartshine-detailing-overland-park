@@ -1,6 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
-import { BUSINESS, type Service, SERVICES } from "@/lib/constants";
+import {
+  BOOKING_CTA_LABEL,
+  BOOKING_URL,
+  BUSINESS,
+  type Service,
+  SERVICES,
+} from "@/lib/constants";
 import { ServiceIcon, Check, Clock, Phone, ArrowRight } from "./Icons";
 
 export function ServiceDetail({
@@ -81,9 +87,14 @@ export function ServiceDetail({
               alignItems: "center",
             }}
           >
-            <Link href="/contact" className="btn btn-primary focus-ring">
-              Book This Service
-            </Link>
+            <a
+              href={BOOKING_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-primary focus-ring"
+            >
+              {BOOKING_CTA_LABEL}
+            </a>
             <a href={BUSINESS.phoneHref} className="btn btn-outline focus-ring">
               <Phone width={18} height={18} />
               {BUSINESS.phone}

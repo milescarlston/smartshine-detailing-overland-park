@@ -25,6 +25,10 @@ export const BUSINESS = {
   },
 } as const;
 
+export const BOOKING_URL =
+  "https://calendly.com/detail-appointment/smartshine-mobile-car-detailing-overland-park";
+export const BOOKING_CTA_LABEL = "Book online";
+
 export const BRAND = {
   primary: "#0EA5E9",
   accent: "#F59E0B",
@@ -276,15 +280,6 @@ export const TESTIMONIALS: Testimonial[] = [
     service: "Exterior Wash & Detail",
   },
 ];
-
-export const CONTACT_SERVICE_OPTIONS = [
-  { value: "exterior-detail", label: "Exterior Wash & Detail (starting at $125)" },
-  { value: "interior-detail", label: "Interior Detail (starting at $175)" },
-  { value: "full-detail", label: "Full Detail Package (starting at $275)" },
-  { value: "ceramic-coating", label: "Ceramic Coating (starting at $449)" },
-  { value: "headlight-restoration", label: "Headlight Restoration (starting at $79)" },
-  { value: "not-sure", label: "Not sure - I need a recommendation" },
-] as const;
 
 export const OG_IMAGE_URL = "/opengraph-image";
 export const OG_IMAGE_ALT = "SmartShine Mobile Car Detailing in Overland Park, KS";

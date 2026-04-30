@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
 import {
+  BOOKING_CTA_LABEL,
+  BOOKING_URL,
   BUSINESS,
   SERVICE_AREAS,
   OG_IMAGES,
@@ -230,9 +231,14 @@ export default function AboutPage() {
               </div>
             </div>
             <div style={{ marginTop: "1.25rem" }}>
-              <Link href="/contact" className="btn btn-primary focus-ring">
-                Get a Free Quote
-              </Link>
+              <a
+                href={BOOKING_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-primary focus-ring"
+              >
+                {BOOKING_CTA_LABEL}
+              </a>
             </div>
           </div>
         </div>

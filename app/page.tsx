@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import {
+  BOOKING_CTA_LABEL,
+  BOOKING_URL,
   BUSINESS,
   SERVICES,
   SERVICE_AREAS,
@@ -99,9 +101,15 @@ export default function HomePage() {
                 flexWrap: "wrap",
               }}
             >
-              <Link href="/contact" className="btn btn-accent focus-ring" style={{ fontSize: "1rem" }}>
-                Get a Free Quote
-              </Link>
+              <a
+                href={BOOKING_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-accent focus-ring"
+                style={{ fontSize: "1rem" }}
+              >
+                {BOOKING_CTA_LABEL}
+              </a>
               <a
                 href={BUSINESS.phoneHref}
                 className="btn focus-ring"
@@ -369,7 +377,7 @@ export default function HomePage() {
             We detail in these cities and most surrounding communities. Not sure if we come to you?
             <Link href="/contact" style={{ color: "var(--brand-darker)", fontWeight: 600 }}>
               {" "}
-              Send us a message
+              Just ask
             </Link>{" "}
             &mdash; we probably do.
           </p>
